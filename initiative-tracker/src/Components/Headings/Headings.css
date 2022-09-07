@@ -1,0 +1,36 @@
+
+.headings {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; 
+    /* border-style: solid; */
+    border-right: solid;
+    border-left: solid;
+    /* border-bottom: solid; */
+    height: 30px;
+    width: 100%;
+  }
+
+#initiative-heading {
+    width: 100px;
+  }
+  
+  #name-heading {
+    width: 250px;
+  }
+  
+  #ac-heading {
+    width: 100px;
+  }
+  
+  #hp-heading {
+    width: 150px;
+  }
+  
+  #ra-heading {
+    width: 100px;
+  }
+  
+  #legendary-heading {
+    width: 50%;
+  }

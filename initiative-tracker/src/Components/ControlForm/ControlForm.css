@@ -1,0 +1,66 @@
+
+.control-form {
+    display: flex;
+    justify-content: space-around;
+    border-style: solid;
+    height: 25%;
+    width: 100%;
+  }
+
+  .inputs {
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+  }
+
+  .form-input {
+    margin: 10px;
+  }
+
+  #ac-input {
+    width: 20px;
+  }
+
+  #initiative-input {
+    width: 20px;
+  }
+
+  #hp-input {
+    width: 20px;
+  }
+
+  #la-input {
+    width: 20px;
+  }
+
+  #lr-input {
+    width: 20px;
+  }
+
+  #type-input-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #mob-input-wrapper {
+    margin-left: 50px;
+  }
+
+  .button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 65%;
+  }
+
+  .navigation-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-left: 400px;
+  }
+
+  .add-clear-buttons {
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+  }
