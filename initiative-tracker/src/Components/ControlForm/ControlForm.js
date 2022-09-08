@@ -78,7 +78,10 @@ class ControlForm extends React.Component {
                             event.preventDefault()
                             this.props.nextTurn()
                         }}>Next</button>
-                        <button>Back</button>
+                        <button onClick={event => {
+                            event.preventDefault()
+                            this.props.backTurn()
+                        }}>Back</button>
                         <button>Top</button>
                     </div>
                 </div>

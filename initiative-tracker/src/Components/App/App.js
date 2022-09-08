@@ -9,8 +9,11 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      initiative: [{name: "Nick", initiativeRoll: 19, hp: 80, type: "Monster"}, {name: "Alex", initiativeRoll: 17, hp: 80, type: "Monster"}, {name: "Lauren", hp: 80, initiativeRoll: 16, type: "Legendary Monster"}]
-      
+      initiative: [
+        {name: "Nick", initiativeRoll: 19, hp: 80, type: "Monster", ra: false}, 
+        {name: "Alex", initiativeRoll: 17, hp: 80, type: "PC", ra: false}, 
+        {name: "Lauren", hp: 80, initiativeRoll: 16, type: "Legendary Monster", ra: false}
+    ]
     }
   }
 
@@ -18,8 +21,34 @@ class App extends React.Component {
     let newOrder = this.state.initiative
     newOrder.push(newOrder[0])
     newOrder.shift()
+    newOrder[0].ra = false
     this.setState({ initiative: newOrder })
+  }
 
+  onDragStart = (event, name) => {
+    console.log('dragstart: ', name, event)
+  }
+
+  reactionHandler = (state) => {
+    let theOrder = this.state.initiative
+    let character = theOrder.find(char => char.name === state.name)
+
+    if (state.ra) {
+      state.ra = false
+    } else {
+      state.ra = true
+    }
+
+    theOrder.splice(theOrder.indexOf(character), 1, state)
+   
+    this.setState({ initiative: theOrder })
+  }
+
+  backTurn = () => {
+    let newOrder = this.state.initiative
+    newOrder.unshift(newOrder[newOrder.length - 1])
+    newOrder.pop()
+    this.setState({ initiative: newOrder })
   }
 
   addToInitiative = (newCharacter) => {
@@ -35,8 +64,12 @@ class App extends React.Component {
       <main>
           <Header />
           <Headings />
-          <InitiativeField initiative={this.state.initiative}/>
-          <ControlForm addToInitiative={this.addToInitiative} clearInitiative={this.clearInitiative} nextTurn={this.nextTurn}/>
+          <InitiativeField initiative={this.state.initiative} reactionHandler={this.reactionHandler} onDragStart={this.onDragStart}/>
+          <ControlForm 
+          addToInitiative={this.addToInitiative} 
+          clearInitiative={this.clearInitiative} 
+          nextTurn={this.nextTurn} 
+          backTurn={this.backTurn}/>
       </main>
     )
   }

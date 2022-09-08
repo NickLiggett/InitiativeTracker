@@ -10,7 +10,7 @@
   .inputs {
     display: flex;
     flex-wrap: wrap;
-    width: 45%;
+    width: 35em;
   }
 
   .form-input {
