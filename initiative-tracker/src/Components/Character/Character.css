@@ -14,19 +14,28 @@
 
 #initiative {
     width: 10%;
+    font-size: 20px;
+    font-weight: 900;
   }
   
   #name {
     width: 20%;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    padding: 1%;
   }
   
   #ac {
     width: 10%;
+    font-size: 20px;
+    font-weight: 900;
   }
   
   #hp {
     width: 15%;
     font-size: 20px;
+    font-weight: 900;
   }
 
   .hp-box {
@@ -43,6 +52,8 @@
   #legendary {
     display: flex;
     width: 50%;
+    font-size: 15px;
+    font-weight: 900;
   }
   .legendary-checkboxes {
     margin-left: 15px;

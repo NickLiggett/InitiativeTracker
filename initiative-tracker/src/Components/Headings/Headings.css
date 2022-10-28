@@ -16,7 +16,7 @@
   }
   
   #name-heading {
-    width: 20%;
+    width: 21%;
   }
   
   #ac-heading {
@@ -24,7 +24,7 @@
   }
   
   #hp-heading {
-    width: 15%;
+    width: 14%;
   }
   
   #ra-heading {
@@ -35,6 +35,6 @@
     width: 50%;
   }
 
-  #space-holder {
+  /* #space-holder {
     width: 2%
-  }
+  } */
