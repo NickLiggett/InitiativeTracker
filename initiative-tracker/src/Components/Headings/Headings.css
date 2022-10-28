@@ -1,36 +1,40 @@
 
 .headings {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center; 
-    /* border-style: solid; */
-    border-right: solid;
-    border-left: solid;
-    /* border-bottom: solid; */
-    height: 30px;
-    width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 30px;
+  width: 100%;
+  border-right-style: solid;
+  border-left-style: solid;
+  font-size: 20px;
+  font-weight: 600;
   }
 
 #initiative-heading {
-    width: 100px;
+    width: 10%;
   }
   
   #name-heading {
-    width: 250px;
+    width: 20%;
   }
   
   #ac-heading {
-    width: 100px;
+    width: 10%;
   }
   
   #hp-heading {
-    width: 150px;
+    width: 15%;
   }
   
   #ra-heading {
-    width: 100px;
+    width: 10%;
   }
   
   #legendary-heading {
     width: 50%;
+  }
+
+  #space-holder {
+    width: 2%
   }

@@ -10,6 +10,7 @@ const Headings = () => {
             <div className="heading" id="hp-heading">HP</div>
             <div className="heading" id="ra-heading">RA</div>
             <div className="heading" id="legendary-heading">Legendary Options</div>
+            <div className="heading" id="space-holder"></div>
           </div>
     )
 }

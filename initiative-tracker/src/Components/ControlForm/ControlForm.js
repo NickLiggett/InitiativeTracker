@@ -1,93 +1,220 @@
-import React from "react"
-import "./ControlForm.css"
+import React, { useState } from "react";
+import "./ControlForm.css";
 
-class ControlForm extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: '',
-            initiative: '',
-            ac: '',
-            hp: '',
-            la: '',
-            lr: '',
-            mob: false,
-            type: ''
-        }
+const ControlForm = ({
+  addToInitiative,
+  clearInitiative,
+  sortInitiative,
+  nextTurn,
+  backTurn,
+}) => {
+  const [name, setName] = useState("");
+  const [initiativeRoll, setInitiativeRoll] = useState("");
+  const [ac, setAc] = useState("");
+  const [hp, setHp] = useState("");
+  const [reaction, setRa] = useState(false);
+  const [legendaryActions, setLa] = useState([]);
+  const [numOfLegActs, setNumOfLegActs] = useState("");
+  const [legendaryResistances, setLr] = useState([]);
+  const [numOfLegRes, setNumOfLegRes] = useState("");
+  const [mob, setMob] = useState(false);
+  const [type, setType] = useState("");
+
+  const addHandler = (event) => {
+    event.preventDefault();
+    for (let i = 0; i < numOfLegActs; i++) {
+      legendaryActions.push(false);
     }
-
-    changeHandler(event) {
-        this.setState({ [event.target.name]: event.target.value })
+    for (let i = 0; i < numOfLegRes; i++) {
+      legendaryResistances.push(false);
     }
+    addToInitiative(event, {
+      name: name,
+      initiativeRoll: initiativeRoll,
+      ac: ac,
+      hp: hp,
+      currentHP: hp,
+      reaction: reaction,
+      legendaryActions: legendaryActions,
+      legendaryResistances: legendaryResistances,
+      mob: mob,
+      type: type,
+    });
+    clearInputs();
+  };
 
-    clearInputs() {
-        this.setState({
-            name: '',
-            initiative: '',
-            ac: '',
-            hp: '',
-            la: '',
-            lr: '',
-            mob: false
-        })
-    }
+  const clearInputs = () => {
+    setName("");
+    setInitiativeRoll("");
+    setAc("");
+    setHp("");
+    setLa([]);
+    setLr([]);
+    setMob(false);
+    setNumOfLegActs("");
+    setNumOfLegRes("");
+  };
 
-    render() {
-        return (
-            <form className="control-form">
-                <div className="inputs">
-                    <div className="form-input" id="name-input-wrapper">Name: <input value={this.state.name} name="name" id="name-input" type="text" onChange={event => this.changeHandler(event)}/></div>
-                    <div className="form-input" id="initiative-input-wrapper">Initiative: <input value={this.state.initiative} name="initiative" id="initiative-input" type="text" onChange={event => this.changeHandler(event)}/></div>
-                    <div className="form-input" id="ac-input-wrapper">AC: <input value={this.state.ac} name="ac" id="ac-input" type="text" onChange={event => this.changeHandler(event)}/></div>
-                    <div className="form-input" id="hp-input-wrapper">HP: <input value={this.state.hp} name="hp" id="hp-input" type="text" onChange={event => this.changeHandler(event)}/></div>
-                    
-                    <div className="form-input" id="type-input-wrapper">
-                        <div><input type="radio" name="type" value="PC" onChange={event => this.changeHandler(event)}/>PC</div>
-                        <div><input type="radio" name="type" value="NPC" onChange={event => this.changeHandler(event)}/>NPC</div>
-                        <div><input type="radio" name="type" value="Monster" onChange={event => this.changeHandler(event)}/>Monster</div>
-                        <div><input type="radio" name="type" value="Legendary Monster" onChange={event => this.changeHandler(event)}/>Legendary Monster</div>
-                    </div>
-                    <div className="form-input" id="mob-input-wrapper">Mob: <input id="mob-input" type="checkbox"/></div>   
-                    <div className="form-input" id="la-input-wrapper">LA: <input id="la-input" type="text"/></div>
-                    <div className="form-input" id="lr-input-wrapper">LR: <input id="lr-input" type="text"/></div>
+  return (
+    <form className="control-form">
+      <div className="inputs-1">
+        <div className="inputs">
+          <div className="form-input" id="name-input-wrapper">
+            Name:{" "}
+            <input
+              value={name}
+              name="name"
+              id="name-input"
+              type="text"
+              onChange={(event) => setName(event.target.value)}
+            />
+            <div className="input-wrapper">
+              <div className="form-input" id="initiative-input-wrapper">
+                Initiative:{" "}
+                <input
+                  value={initiativeRoll}
+                  name="initiativeRoll"
+                  id="initiative-input"
+                  type="text"
+                  onChange={(event) => setInitiativeRoll(event.target.value)}
+                />
+              </div>
+              <div className="form-input" id="ac-input-wrapper">
+                AC:{" "}
+                <input
+                  value={ac}
+                  name="ac"
+                  id="ac-input"
+                  type="text"
+                  onChange={(event) => setAc(event.target.value)}
+                />
+              </div>
+              <div className="form-input" id="hp-input-wrapper">
+                HP:{" "}
+                <input
+                  value={hp}
+                  name="hp"
+                  id="hp-input"
+                  type="text"
+                  onChange={(event) => setHp(event.target.value)}
+                />
+              </div>
+              {type === "Monster" && (
+                <div className="form-input" id="mob-input-wrapper">
+                  Mob:{" "}
+                  <input
+                    id="mob-input"
+                    type="checkbox"
+                    onChange={() => setMob(!mob)}
+                  />
                 </div>
-                <div className="button-wrapper">
-                    <div className="add-clear-buttons">
-                        <button onClick={event => {
-                            event.preventDefault()
-                            this.props.addToInitiative({
-                                name: this.state.name,
-                                initiativeRoll: this.state.initiative,
-                                ac: this.state.ac,
-                                hp: this.state.hp,
-                                ra: this.state.ra,
-                                la: this.state.la,
-                                lr: this.state.lr,
-                                mob: this.state.mob,
-                                type: this.state.type
-                            })
-                            this.clearInputs()
-                        }}>Add to Initiative</button>
-                        <button onClick={event => {
-                            event.preventDefault()
-                            this.props.clearInitiative()
-                        }}>Clear Initiative</button>
-                    </div>
-                    <div className="navigation-buttons">
-                        <button onClick={event => {
-                            event.preventDefault()
-                            this.props.nextTurn()
-                        }}>Next</button>
-                        <button onClick={event => {
-                            event.preventDefault()
-                            this.props.backTurn()
-                        }}>Back</button>
-                        <button>Top</button>
-                    </div>
-                </div>
-            </form>
-        )
-    }
-}
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="input-wrapper">
+          <div className="form-input" id="type-input-wrapper">
+            <div>
+              <input
+                type="radio"
+                name="type"
+                value="PC"
+                onChange={(event) => setType(event.target.value)}
+              />
+              PC
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="type"
+                value="NPC"
+                onChange={(event) => setType(event.target.value)}
+              />
+              NPC
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="type"
+                value="Monster"
+                onChange={(event) => setType(event.target.value)}
+              />
+              Monster
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="type"
+                value="Legendary"
+                onChange={(event) => setType(event.target.value)}
+              />
+              Legendary
+            </div>
+          </div>
 
-export default ControlForm
+          {type === "Legendary" && (
+            <div className="legendary-input-wrapper">
+              <div className="form-input" id="legendaryActions-input-wrapper">
+                Legendary Actions:
+                <input
+                  id="legendaryActions-input"
+                  type="text"
+                  value={numOfLegActs}
+                  onChange={(event) => setNumOfLegActs(event.target.value)}
+                />
+              </div>
+              <div
+                className="form-input"
+                id="legendaryResistances-input-wrapper"
+              >
+                Legendary Resistances:
+                <input
+                  id="legendaryResistances-input"
+                  type="text"
+                  value={numOfLegRes}
+                  onChange={(event) => setNumOfLegRes(event.target.value)}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="button-wrapper">
+        <div className="add-clear-buttons">
+          <button onClick={(event) => addHandler(event)}>
+            Add to Initiative
+          </button>
+          <button
+            onClick={(event) => {
+              clearInitiative(event);
+            }}
+          >
+            Clear Initiative
+          </button>
+          <button onClick={(event) => sortInitiative(event)}>Sort</button>
+        </div>
+        <div className="navigation-buttons">
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              nextTurn();
+            }}
+          >
+            Next
+          </button>
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              backTurn();
+            }}
+          >
+            Back
+          </button>
+          <button onClick={(event) => event.preventDefault()}>Top</button>
+        </div>
+      </div>
+    </form>
+  );
+};
+
+export default ControlForm;

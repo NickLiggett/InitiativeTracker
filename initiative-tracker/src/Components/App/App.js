@@ -1,78 +1,129 @@
-import React from "react"
-import "./App.css"
-import Header from "../Header/Header"
-import Headings from "../Headings/Headings"
-import InitiativeField from "../InitiativeField/InitiativeField"
-import ControlForm from "../ControlForm/ControlForm"
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Header from "../Header/Header";
+import Headings from "../Headings/Headings";
+import InitiativeField from "../InitiativeField/InitiativeField";
+import ControlForm from "../ControlForm/ControlForm";
 
-class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      initiative: [
-        {name: "Nick", initiativeRoll: 19, hp: 80, type: "Monster", ra: false}, 
-        {name: "Alex", initiativeRoll: 17, hp: 80, type: "PC", ra: false}, 
-        {name: "Lauren", hp: 80, initiativeRoll: 16, type: "Legendary Monster", ra: false}
-    ]
+const App = () => {
+  const [initiative, setInitiative] = useState([
+    {
+      name: "Nick",
+      initiativeRoll: 13,
+      hp: 75,
+      currentHP: 75,
+      type: "Monster",
+      legendaryActions: [],
+      legendaryResistances: [],
+      reaction: false,
+      ac: 18,
+    },
+    {
+      name: "Alex",
+      initiativeRoll: 7,
+      hp: 82,
+      currentHP: 82,
+      legendaryActions: [],
+      legendaryResistances: [],
+      type: "PC",
+      reaction: false,
+      ac: 16,
+    },
+    {
+      name: "Lauren",
+      initiativeRoll: 16,
+      hp: 78,
+      currentHP: 78,
+      type: "Legendary",
+      legendaryActions: [false, false, false],
+      legendaryResistances: [false, false],
+      reaction: false,
+      ac: 17,
+    },
+  ]);
+
+  if (initiative.length) {
+    if (initiative[0].legendaryActions.length) {
+      initiative[0].legendaryActions = initiative[0].legendaryActions.map(
+        (act) => (act = false)
+      );
+    }
+    if (initiative[0].reaction) {
+      initiative[0].reaction = false;
     }
   }
 
-  nextTurn = () => {
-    let newOrder = this.state.initiative
-    newOrder.push(newOrder[0])
-    newOrder.shift()
-    newOrder[0].ra = false
-    this.setState({ initiative: newOrder })
-  }
+  const nextTurn = () => {
+    let newOrder = initiative;
+    newOrder.push(newOrder[0]);
+    newOrder.shift();
+    newOrder[0].reaction = false;
+    setInitiative([...newOrder]);
+  };
 
-  onDragStart = (event, name) => {
-    console.log('dragstart: ', name, event)
-  }
+  const reactionHandler = (state) => {
+    let theOrder = initiative;
+    let character = theOrder.find((char) => char.name === state.name);
 
-  reactionHandler = (state) => {
-    let theOrder = this.state.initiative
-    let character = theOrder.find(char => char.name === state.name)
-
-    if (state.ra) {
-      state.ra = false
+    if (state.reaction) {
+      state.reaction = false;
     } else {
-      state.ra = true
+      state.reaction = true;
     }
 
-    theOrder.splice(theOrder.indexOf(character), 1, state)
-   
-    this.setState({ initiative: theOrder })
-  }
+    theOrder.splice(theOrder.indexOf(character), 1, state);
 
-  backTurn = () => {
-    let newOrder = this.state.initiative
-    newOrder.unshift(newOrder[newOrder.length - 1])
-    newOrder.pop()
-    this.setState({ initiative: newOrder })
-  }
+    setInitiative(theOrder);
+  };
 
-  addToInitiative = (newCharacter) => {
-    this.setState({ initiative: [...this.state.initiative, newCharacter].sort((a, b) => b.initiativeRoll - a.initiativeRoll) })
-  }
+  const backTurn = () => {
+    let newOrder = initiative;
+    newOrder.unshift(newOrder[newOrder.length - 1]);
+    newOrder.pop();
+    setInitiative([...newOrder]);
+  };
 
-  clearInitiative = () => {
-    this.setState({ initiative: [] })
-  }
+  const addToInitiative = (event, newCharacter) => {
+    event.preventDefault();
+    setInitiative([...initiative, newCharacter]);
+  };
 
-  render() {
-    return (
-      <main>
-          <Header />
-          <Headings />
-          <InitiativeField initiative={this.state.initiative} reactionHandler={this.reactionHandler} onDragStart={this.onDragStart}/>
-          <ControlForm 
-          addToInitiative={this.addToInitiative} 
-          clearInitiative={this.clearInitiative} 
-          nextTurn={this.nextTurn} 
-          backTurn={this.backTurn}/>
-      </main>
-    )
-  }
-}
+  const removeFromInitiative = (event, character) => {
+    event.preventDefault();
+    setInitiative(initiative.filter((char) => char !== character));
+  };
 
-export default App
+  const sortInitiative = (event) => {
+    event.preventDefault();
+    setInitiative([
+      ...initiative.sort((a, b) => b.initiativeRoll - a.initiativeRoll),
+    ]);
+  };
+
+  const clearInitiative = (event) => {
+    event.preventDefault();
+    setInitiative([]);
+  };
+
+  return (
+    <main>
+      <Header />
+      <Headings />
+      <InitiativeField
+        initiative={initiative}
+        reactionHandler={reactionHandler}
+        removeFromInitiative={removeFromInitiative}
+        // onDragStart={onDragStart}
+      />
+      <ControlForm
+        addToInitiative={addToInitiative}
+        clearInitiative={clearInitiative}
+        sortInitiative={sortInitiative}
+        nextTurn={nextTurn}
+        backTurn={backTurn}
+      />
+    </main>
+  );
+};
+
+export default App;

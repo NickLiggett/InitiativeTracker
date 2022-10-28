@@ -1,25 +1,21 @@
-import React from "react"
-import "./InitiativeField.css"
-import Character from "../Character/Character"
-// import Draggable from "react-draggable"
+import React from "react";
+import "./InitiativeField.css";
+import Character from "../Character/Character";
 
-const InitiativeField = ({ initiative, reactionHandler, onDragStart }) => {
-   
-    const characters = initiative.map(character => {
-        return <Character 
-        key={character.name} 
-        character={character} 
-        initiative={initiative} 
-        reactionHandler={reactionHandler}
-        onDragStart={event => onDragStart(event, character.name)}/>
-    })
-    
+const InitiativeField = ({ initiative, reactionHandler, removeFromInitiative }) => {
+  const characters = initiative.map((character) => {
     return (
-        <div className="initiative-wrapper">
+      <Character
+        key={character.name}
+        character={character}
+        initiative={initiative}
+        reactionHandler={reactionHandler}
+        removeFromInitiative={removeFromInitiative}
+      />
+    );
+  });
 
-            {characters}
-        </div>
-    )
-}
+  return <div key={Date.now()} className="initiative-wrapper">{characters}</div>;
+};
 
-export default InitiativeField
+export default InitiativeField;

@@ -6,19 +6,25 @@ html {
   height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 body {
   height: 100%;
+  /* background-color :rgb(54, 62, 62); */
+  background-image: url("../../Assets/dungeon.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75em;
-  height: 50em;
-  margin-top: 20px;
+  justify-content: center;
+  width: 80%;
+  height: 90%;
 }
 
 .title {
@@ -26,18 +32,21 @@ main {
   display: flex;
   justify-content: center;
   width: 100%;
+  background-color:rgba(250, 235, 215, 0.3);
 }
 
 .heading {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-style: solid;
   height: 100%;
+  background-color:rgba(250, 235, 215, 0.3);
 }
 
 .initiative-wrapper {
   border-style: solid;
   height: 80%;
   width: 100%;
+  overflow-y: auto;
+  background-color:rgba(250, 235, 215, 0.3);
 }
