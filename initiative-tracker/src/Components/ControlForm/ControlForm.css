@@ -4,6 +4,7 @@
     justify-content: space-between;
     border-style: solid;
     height: 25%;
+    min-height: 150px;
     width: 100%;
     background-color:rgba(250, 235, 215, 0.3);
   }
@@ -79,6 +80,7 @@
     align-items: center;
     justify-content: space-between;
     width: 40%;
+    margin-top: 1%;
   }
 
   #add-button, 
@@ -96,6 +98,12 @@
     width: 110%;
     height: 50%;
     margin: 5px;
+  }
+
+  #add-button, 
+  #clear-button, 
+  #sort-button {
+    margin-left: 25%;
   }
 
   .navigation-buttons {
