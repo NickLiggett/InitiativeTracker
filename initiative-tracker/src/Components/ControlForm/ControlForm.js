@@ -181,20 +181,22 @@ const ControlForm = ({
       </div>
       <div className="button-wrapper">
         <div className="add-clear-buttons">
-          <button onClick={(event) => addHandler(event)}>
+          <button id="add-button" onClick={(event) => addHandler(event)}>
             Add to Initiative
           </button>
           <button
+          id="clear-button"
             onClick={(event) => {
               clearInitiative(event);
             }}
           >
             Clear Initiative
           </button>
-          <button onClick={(event) => sortInitiative(event)}>Sort</button>
+          <button id="sort-button" onClick={(event) => sortInitiative(event)}>Sort</button>
         </div>
         <div className="navigation-buttons">
           <button
+          id="next-button"
             onClick={(event) => {
               event.preventDefault();
               nextTurn();
@@ -203,6 +205,7 @@ const ControlForm = ({
             Next
           </button>
           <button
+          id="back-button"
             onClick={(event) => {
               event.preventDefault();
               backTurn();
@@ -210,7 +213,7 @@ const ControlForm = ({
           >
             Back
           </button>
-          <button onClick={(event) => event.preventDefault()}>Top</button>
+          <button id="top-button" onClick={(event) => event.preventDefault()}>Top</button>
         </div>
       </div>
     </form>

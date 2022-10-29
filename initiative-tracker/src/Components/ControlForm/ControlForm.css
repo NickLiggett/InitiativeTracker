@@ -22,6 +22,8 @@
     flex-direction: column;
     justify-content: space-around;
     width: 60%;
+    color: white;
+    text-shadow: 0 0 5px black;
   }
 
   .form-input {
@@ -31,6 +33,17 @@
     margin-top: 1%;
     font-size: 20px;
     font-weight: 600;
+  }
+
+  #name-input, 
+  #ac-input, 
+  #initiative-input,
+  #hp-input {
+    background-color:rgba(41, 40, 40, 0.727);
+    color: white;
+    font-family: monospace;
+    border-color: darkred;
+    border-style: solid;
   }
 
   #ac-input {
@@ -58,6 +71,7 @@
     flex-direction: column;
     align-items: flex-start;
     width: 25%;
+    padding-bottom: 1%;
   }
 
   .button-wrapper {
@@ -65,6 +79,23 @@
     align-items: center;
     justify-content: space-between;
     width: 40%;
+  }
+
+  #add-button, 
+  #clear-button, 
+  #sort-button, 
+  #next-button, 
+  #back-button, 
+  #top-button {
+    background-color:rgba(41, 40, 40, 0.727);
+    color: white;
+    font-size: 100%;
+    font-family: monospace;
+    border-color: darkred;
+    border-style: solid;
+    width: 110%;
+    height: 50%;
+    margin: 5px;
   }
 
   .navigation-buttons {

@@ -43,6 +43,11 @@
     height: 25px;
     text-align: center;
     font-size: 20px;
+    background-color:rgba(41, 40, 40, 0.727);
+    color: white;
+    font-family: monospace;
+    border-color: darkred;
+    border-style: solid;
   }
 
   #reaction {
