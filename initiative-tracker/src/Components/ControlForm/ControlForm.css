@@ -7,11 +7,11 @@
     min-height: 150px;
     width: 100%;
     background-color:rgba(250, 235, 215, 0.3);
+    font-family: monospace;
   }
 
   .inputs {
     display: flex;
-    
   }
 
   .input-wrapper {
@@ -42,7 +42,6 @@
   #hp-input {
     background-color:rgba(41, 40, 40, 0.727);
     color: white;
-    font-family: monospace;
     border-color: darkred;
     border-style: solid;
   }
@@ -65,6 +64,11 @@
 
   #legendaryResistances-input {
     width: 20px;
+  }
+
+  #type-error-dot {
+    color: red;
+
   }
 
   #type-input-wrapper {

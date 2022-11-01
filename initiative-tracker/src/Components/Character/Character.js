@@ -2,12 +2,7 @@ import { useState } from "react";
 import "./Character.css";
 import cross from "../../Assets/cross.png";
 
-const Character = ({
-  character,
-  initiative,
-  reactionHandler,
-  removeFromInitiative,
-}) => {
+const Character = ({ character, initiative, removeFromInitiative }) => {
   const {
     name,
     ac,
@@ -21,14 +16,12 @@ const Character = ({
   } = character;
 
   const [isChecked, setChecked] = useState(false);
-  const [usedReaction, setUsedReaction] = useState(reaction)
 
   const changeHandler = (event) => {
     let theChar = initiative.find((char) => char.name === event.target.id);
-    theChar.reaction = !theChar.reaction
+    theChar.reaction = !theChar.reaction;
     setChecked(!isChecked);
-
-  }
+  };
 
   const actionCheckboxHandler = (event, i) => {
     let theChar = initiative.find((char) => char.name === event.target.id);
@@ -40,6 +33,15 @@ const Character = ({
     let theChar = initiative.find((char) => char.name === event.target.id);
     theChar.legendaryResistances[i] = !theChar.legendaryResistances[i];
     setChecked(!isChecked);
+  };
+
+  const handleHP = (event) => {
+    let theChar = initiative.find((char) => char.name === event.target.id);
+    theChar.currentHP = event.target.value;
+  };
+
+  const dragStart = (event) => {
+    event.preventDefault();
   };
 
   const legendaryActionBoxes = [];
@@ -70,17 +72,6 @@ const Character = ({
     );
   }
 
-
-
-  const handleHP = (event) => {
-    let theChar = initiative.find((char) => char.name === event.target.id);
-    theChar.currentHP = event.target.value;
-  };
-
-  const dragStart = (event) => {
-    event.preventDefault();
-  };
-
   let color;
 
   if (type === "PC") {
@@ -91,6 +82,8 @@ const Character = ({
     color = "rgb(255 0 0 / 0.5)";
   } else if (type === "Legendary") {
     color = "rgb(255 209 0 / 50%)";
+  } else if (type === "Other") {
+    color = "rgb(25 25 25 / 50%)";
   }
 
   return (

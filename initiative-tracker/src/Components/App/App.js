@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import Headings from "../Headings/Headings";
 import InitiativeField from "../InitiativeField/InitiativeField";
 import ControlForm from "../ControlForm/ControlForm";
+import OptionsMenu from "../OptionsMenu/OptionsMenu";
 
 const App = () => {
   const [initiative, setInitiative] = useState([
@@ -41,6 +42,38 @@ const App = () => {
       ac: 17,
     },
   ]);
+  const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
+  const [show, setShow] = useState(false);
+
+  const handleContextMenu = useCallback(
+    (event) => {
+      event.preventDefault();
+      setAnchorPoint({ x: event.pageX, y: event.pageY });
+      setShow(true);
+    },
+    [setAnchorPoint, setShow]
+  );
+
+  const handleClick = useCallback(() => (show ? setShow(false) : null), [show]);
+
+  useEffect(() => {
+    document
+      .querySelectorAll(".character")
+      .forEach((element) =>
+        element.addEventListener("contextmenu", handleContextMenu)
+      );
+    document.addEventListener("click", handleClick);
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document
+        .querySelectorAll(".character")
+        .forEach((element) =>
+          element.removeEventListener("contextmenu", handleContextMenu)
+        );
+      document.removeEventListener("click", handleClick);
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  })
 
   if (initiative.length) {
     if (initiative[0].legendaryActions.length) {
@@ -85,7 +118,11 @@ const App = () => {
 
   const addToInitiative = (event, newCharacter) => {
     event.preventDefault();
-    setInitiative([...initiative, newCharacter]);
+    if (newCharacter.type !== "") {
+      setInitiative([...initiative, newCharacter]);
+    } else {
+      console.log("You must select a Type");
+    }
   };
 
   const removeFromInitiative = (event, character) => {
@@ -105,6 +142,22 @@ const App = () => {
     setInitiative([]);
   };
 
+  const handleKeyPress = (event) => {
+    if (document.querySelector("#name-input") !== document.activeElement) {
+      if (event.key === " ") {
+        nextTurn();
+      } else if (event.key === "b") {
+        backTurn();
+      } else if (event.key === "s") {
+        sortInitiative(event);
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+  }, []);
+
   return (
     <main>
       <Header />
@@ -122,6 +175,7 @@ const App = () => {
         nextTurn={nextTurn}
         backTurn={backTurn}
       />
+      {show && <OptionsMenu anchorPoint={anchorPoint} />}
     </main>
   );
 };

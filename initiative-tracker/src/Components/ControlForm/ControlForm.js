@@ -19,28 +19,34 @@ const ControlForm = ({
   const [numOfLegRes, setNumOfLegRes] = useState("");
   const [mob, setMob] = useState(false);
   const [type, setType] = useState("");
+  const [checked, setChecked] = useState(false)
+  const [error, setError] = useState(false)
 
   const addHandler = (event) => {
     event.preventDefault();
-    for (let i = 0; i < numOfLegActs; i++) {
-      legendaryActions.push(false);
+    if (type !== "") {
+      for (let i = 0; i < numOfLegActs; i++) {
+        legendaryActions.push(false);
+      }
+      for (let i = 0; i < numOfLegRes; i++) {
+        legendaryResistances.push(false);
+      }
+      addToInitiative(event, {
+        name: name,
+        initiativeRoll: initiativeRoll,
+        ac: ac,
+        hp: hp,
+        currentHP: hp,
+        reaction: reaction,
+        legendaryActions: legendaryActions,
+        legendaryResistances: legendaryResistances,
+        mob: mob,
+        type: type,
+      });
+      clearInputs();
+    } else {
+      setError(true)
     }
-    for (let i = 0; i < numOfLegRes; i++) {
-      legendaryResistances.push(false);
-    }
-    addToInitiative(event, {
-      name: name,
-      initiativeRoll: initiativeRoll,
-      ac: ac,
-      hp: hp,
-      currentHP: hp,
-      reaction: reaction,
-      legendaryActions: legendaryActions,
-      legendaryResistances: legendaryResistances,
-      mob: mob,
-      type: type,
-    });
-    clearInputs();
   };
 
   const clearInputs = () => {
@@ -55,6 +61,11 @@ const ControlForm = ({
     setNumOfLegRes("");
   };
 
+  const radioButtonHandler = (event) => {
+    setError(false)
+    setType(event.target.value)
+  }
+
   return (
     <form className="control-form">
       <div className="inputs-1">
@@ -63,9 +74,11 @@ const ControlForm = ({
             Name:{" "}
             <input
               value={name}
+              maxLength={20}
               name="name"
               id="name-input"
               type="text"
+              checked={checked}
               onChange={(event) => setName(event.target.value)}
             />
             <div className="input-wrapper">
@@ -119,8 +132,8 @@ const ControlForm = ({
                 type="radio"
                 name="type"
                 value="PC"
-                onChange={(event) => setType(event.target.value)}
-              />
+                onChange={(event) => radioButtonHandler(event)}
+                />
               PC
             </div>
             <div>
@@ -128,8 +141,8 @@ const ControlForm = ({
                 type="radio"
                 name="type"
                 value="NPC"
-                onChange={(event) => setType(event.target.value)}
-              />
+                onChange={(event) => radioButtonHandler(event)}
+                />
               NPC
             </div>
             <div>
@@ -137,8 +150,8 @@ const ControlForm = ({
                 type="radio"
                 name="type"
                 value="Monster"
-                onChange={(event) => setType(event.target.value)}
-              />
+                onChange={(event) => radioButtonHandler(event)}
+                />
               Monster
             </div>
             <div>
@@ -146,12 +159,21 @@ const ControlForm = ({
                 type="radio"
                 name="type"
                 value="Legendary"
-                onChange={(event) => setType(event.target.value)}
-              />
+                onChange={(event) => radioButtonHandler(event)}
+                />
               Legendary
             </div>
+            <div>
+              <input
+                type="radio"
+                name="type"
+                value="Other"
+                onChange={(event) => radioButtonHandler(event)}
+                />
+              Other
+            </div>
           </div>
-
+          {error && <p id="type-error-dot">* You must select a Type</p>}
           {type === "Legendary" && (
             <div className="legendary-input-wrapper">
               <div className="form-input" id="legendaryActions-input-wrapper">
