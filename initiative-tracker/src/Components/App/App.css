@@ -69,8 +69,17 @@ main {
   transition: opacity 0.5s linear;
 }
 
+.edit-screen-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 89%;
+  background-color: rgba(73, 73, 73, 0.505);
+  position: absolute;
+}
+
 .edit-screen {
-  width: 30%;
+  width: 40%;
   height: 50%;
   background-color: rgba(24, 24, 23, 0.9);
   position: absolute;
@@ -83,5 +92,5 @@ main {
 .edit-button-wrapper {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 25%;
+  margin-top: 15%;
 }
