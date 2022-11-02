@@ -5,7 +5,7 @@ const EditCharacterMenu = ({
   editCharacter,
   setShowEditScreen,
 }) => {
-  const { name, ac, initiativeRoll, hp, type, legendaryActions } =
+  const { name, ac, initiativeRoll, hp, type, legendaryActions, legendaryResistances } =
     editedCharacter;
 
   const [editedName, setEditedName] = useState(name);
@@ -14,7 +14,7 @@ const EditCharacterMenu = ({
   const [editedHp, setEditedHp] = useState(hp);
   const [editedType, setEditedType] = useState(type);
   const [editedLegActs, setEditedLegActs] = useState(legendaryActions.length);
-  const [editedLegRes, setEditedLegRes] = useState(legendaryActions.length);
+  const [editedLegRes, setEditedLegRes] = useState(legendaryResistances.length);
 
   return (
     <div className="edit-screen-wrapper">
