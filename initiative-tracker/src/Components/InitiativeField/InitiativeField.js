@@ -2,15 +2,16 @@ import React from "react";
 import "./InitiativeField.css";
 import Character from "../Character/Character";
 
-const InitiativeField = ({ initiative, reactionHandler, removeFromInitiative }) => {
+const InitiativeField = ({ initiative, removeFromInitiative, setEditedCharacter, setShowEditScreen }) => {
   const characters = initiative.map((character) => {
     return (
       <Character
         key={character.name}
         character={character}
         initiative={initiative}
-        reactionHandler={reactionHandler}
         removeFromInitiative={removeFromInitiative}
+        setEditedCharacter={setEditedCharacter}
+        setShowEditScreen={setShowEditScreen}
       />
     );
   });

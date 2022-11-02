@@ -1,7 +1,13 @@
-const OptionsMenu = ({ anchorPoint }) => {
-
-  const clickHandler = (event) => {
-    console.log(event.target)
+const OptionsMenu = ({
+  anchorPoint,
+  character,
+  removeFromInitiative,
+  setEditedCharacter,
+  setShowEditScreen
+}) => {
+  const editHandler = () => {
+    setShowEditScreen(true)
+    setEditedCharacter(character)
   };
 
   return (
@@ -12,8 +18,10 @@ const OptionsMenu = ({ anchorPoint }) => {
         left: anchorPoint.x,
       }}
     >
-      <li>Edit</li>
-      <li onClick={(event) => clickHandler(event)}>Delete</li>
+      <li onClick={() => editHandler()}>Edit</li>
+      <li onClick={(event) => removeFromInitiative(event, character)}>
+        Delete
+      </li>
     </ul>
   );
 };

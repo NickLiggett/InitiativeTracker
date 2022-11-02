@@ -19,8 +19,7 @@ const ControlForm = ({
   const [numOfLegRes, setNumOfLegRes] = useState("");
   const [mob, setMob] = useState(false);
   const [type, setType] = useState("");
-  const [checked, setChecked] = useState(false)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   const addHandler = (event) => {
     event.preventDefault();
@@ -42,10 +41,11 @@ const ControlForm = ({
         legendaryResistances: legendaryResistances,
         mob: mob,
         type: type,
+        id: Date.now()
       });
       clearInputs();
     } else {
-      setError(true)
+      setError(true);
     }
   };
 
@@ -62,9 +62,9 @@ const ControlForm = ({
   };
 
   const radioButtonHandler = (event) => {
-    setError(false)
-    setType(event.target.value)
-  }
+    setError(false);
+    setType(event.target.value);
+  };
 
   return (
     <form className="control-form">
@@ -78,7 +78,6 @@ const ControlForm = ({
               name="name"
               id="name-input"
               type="text"
-              checked={checked}
               onChange={(event) => setName(event.target.value)}
             />
             <div className="input-wrapper">
@@ -131,45 +130,50 @@ const ControlForm = ({
               <input
                 type="radio"
                 name="type"
+                id="PC"
                 value="PC"
                 onChange={(event) => radioButtonHandler(event)}
-                />
+              />
               PC
             </div>
             <div>
               <input
                 type="radio"
                 name="type"
+                id="NPC"
                 value="NPC"
                 onChange={(event) => radioButtonHandler(event)}
-                />
+              />
               NPC
             </div>
             <div>
               <input
                 type="radio"
                 name="type"
+                id="Monster"
                 value="Monster"
                 onChange={(event) => radioButtonHandler(event)}
-                />
+              />
               Monster
             </div>
             <div>
               <input
                 type="radio"
                 name="type"
+                id="Legendary"
                 value="Legendary"
                 onChange={(event) => radioButtonHandler(event)}
-                />
+              />
               Legendary
             </div>
             <div>
               <input
                 type="radio"
                 name="type"
+                id="Other"
                 value="Other"
                 onChange={(event) => radioButtonHandler(event)}
-                />
+              />
               Other
             </div>
           </div>
@@ -207,18 +211,20 @@ const ControlForm = ({
             Add to Initiative
           </button>
           <button
-          id="clear-button"
+            id="clear-button"
             onClick={(event) => {
               clearInitiative(event);
             }}
           >
             Clear Initiative
           </button>
-          <button id="sort-button" onClick={(event) => sortInitiative(event)}>Sort</button>
+          <button id="sort-button" onClick={(event) => sortInitiative(event)}>
+            Sort
+          </button>
         </div>
         <div className="navigation-buttons">
           <button
-          id="next-button"
+            id="next-button"
             onClick={(event) => {
               event.preventDefault();
               nextTurn();
@@ -227,7 +233,7 @@ const ControlForm = ({
             Next
           </button>
           <button
-          id="back-button"
+            id="back-button"
             onClick={(event) => {
               event.preventDefault();
               backTurn();
@@ -235,7 +241,9 @@ const ControlForm = ({
           >
             Back
           </button>
-          <button id="top-button" onClick={(event) => event.preventDefault()}>Top</button>
+          <button id="top-button" onClick={(event) => event.preventDefault()}>
+            Top
+          </button>
         </div>
       </div>
     </form>

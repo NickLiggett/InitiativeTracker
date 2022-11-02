@@ -68,3 +68,20 @@ main {
   opacity: 1;
   transition: opacity 0.5s linear;
 }
+
+.edit-screen {
+  width: 30%;
+  height: 50%;
+  background-color: rgba(24, 24, 23, 0.9);
+  position: absolute;
+  margin-top: 12%;
+  color: white;
+  padding: 1%;
+  text-align: center;
+}
+
+.edit-button-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 25%;
+}

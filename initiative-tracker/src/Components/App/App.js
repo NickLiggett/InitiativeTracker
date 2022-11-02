@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import Headings from "../Headings/Headings";
 import InitiativeField from "../InitiativeField/InitiativeField";
 import ControlForm from "../ControlForm/ControlForm";
-import OptionsMenu from "../OptionsMenu/OptionsMenu";
+import EditCharacterMenu from "../EditCharacterMenu/EditCharacterMenu";
 
 const App = () => {
   const [initiative, setInitiative] = useState([
@@ -18,6 +18,7 @@ const App = () => {
       legendaryResistances: [],
       reaction: false,
       ac: 18,
+      id: 123,
     },
     {
       name: "Alex",
@@ -29,6 +30,7 @@ const App = () => {
       type: "PC",
       reaction: false,
       ac: 16,
+      id: 456,
     },
     {
       name: "Lauren",
@@ -40,40 +42,11 @@ const App = () => {
       legendaryResistances: [false, false],
       reaction: false,
       ac: 17,
+      id: 789,
     },
   ]);
-  const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
-  const [show, setShow] = useState(false);
-
-  const handleContextMenu = useCallback(
-    (event) => {
-      event.preventDefault();
-      setAnchorPoint({ x: event.pageX, y: event.pageY });
-      setShow(true);
-    },
-    [setAnchorPoint, setShow]
-  );
-
-  const handleClick = useCallback(() => (show ? setShow(false) : null), [show]);
-
-  useEffect(() => {
-    document
-      .querySelectorAll(".character")
-      .forEach((element) =>
-        element.addEventListener("contextmenu", handleContextMenu)
-      );
-    document.addEventListener("click", handleClick);
-    document.addEventListener("keydown", handleKeyPress);
-    return () => {
-      document
-        .querySelectorAll(".character")
-        .forEach((element) =>
-          element.removeEventListener("contextmenu", handleContextMenu)
-        );
-      document.removeEventListener("click", handleClick);
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  })
+  const [showEditScreen, setShowEditScreen] = useState(false);
+  const [editedCharacter, setEditedCharacter] = useState({});
 
   if (initiative.length) {
     if (initiative[0].legendaryActions.length) {
@@ -94,21 +67,6 @@ const App = () => {
     setInitiative([...newOrder]);
   };
 
-  const reactionHandler = (state) => {
-    let theOrder = initiative;
-    let character = theOrder.find((char) => char.name === state.name);
-
-    if (state.reaction) {
-      state.reaction = false;
-    } else {
-      state.reaction = true;
-    }
-
-    theOrder.splice(theOrder.indexOf(character), 1, state);
-
-    setInitiative(theOrder);
-  };
-
   const backTurn = () => {
     let newOrder = initiative;
     newOrder.unshift(newOrder[newOrder.length - 1]);
@@ -118,11 +76,8 @@ const App = () => {
 
   const addToInitiative = (event, newCharacter) => {
     event.preventDefault();
-    if (newCharacter.type !== "") {
-      setInitiative([...initiative, newCharacter]);
-    } else {
-      console.log("You must select a Type");
-    }
+    setInitiative([...initiative, newCharacter]);
+    document.getElementById("name-input").focus();
   };
 
   const removeFromInitiative = (event, character) => {
@@ -143,7 +98,11 @@ const App = () => {
   };
 
   const handleKeyPress = (event) => {
-    if (document.querySelector("#name-input") !== document.activeElement) {
+    if (
+      document.getElementById("name-input") !== document.activeElement &&
+      document.getElementById("edit-name") !== document.activeElement &&
+      document.getElementById("edit-type") !== document.activeElement
+    ) {
       if (event.key === " ") {
         nextTurn();
       } else if (event.key === "b") {
@@ -154,9 +113,26 @@ const App = () => {
     }
   };
 
+  const editCharacter = (characterID) => {
+    const theChar = initiative.find(
+      (character) => characterID === character.id
+    );
+    theChar.name = document.getElementById("edit-name").value;
+    theChar.initiativeRoll = document.getElementById("edit-initiative").value;
+    theChar.ac = document.getElementById("edit-ac").value;
+    theChar.hp = document.getElementById("edit-hp").value;
+    theChar.type = document.getElementById("edit-type").value;
+    if (document.getElementById("edit-legendary-actions")) {
+      theChar.legendaryActions.length = document.getElementById("edit-legendary-actions").value
+      theChar.legendaryResistances.length = document.getElementById("edit-legendary-resistances").value
+    }
+    setShowEditScreen(false);
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
-  }, []);
+    return () => document.removeEventListener("keydown", handleKeyPress);
+  });
 
   return (
     <main>
@@ -164,9 +140,9 @@ const App = () => {
       <Headings />
       <InitiativeField
         initiative={initiative}
-        reactionHandler={reactionHandler}
         removeFromInitiative={removeFromInitiative}
-        // onDragStart={onDragStart}
+        setEditedCharacter={setEditedCharacter}
+        setShowEditScreen={setShowEditScreen}
       />
       <ControlForm
         addToInitiative={addToInitiative}
@@ -175,7 +151,13 @@ const App = () => {
         nextTurn={nextTurn}
         backTurn={backTurn}
       />
-      {show && <OptionsMenu anchorPoint={anchorPoint} />}
+      {showEditScreen && (
+        <EditCharacterMenu
+          editedCharacter={editedCharacter}
+          editCharacter={editCharacter}
+          setShowEditScreen={setShowEditScreen}
+        />
+      )}
     </main>
   );
 };

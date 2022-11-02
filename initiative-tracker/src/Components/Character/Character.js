@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./Character.css";
 import cross from "../../Assets/cross.png";
+import OptionsMenu from "../OptionsMenu/OptionsMenu";
 
-const Character = ({ character, initiative, removeFromInitiative }) => {
+const Character = ({
+  character,
+  initiative,
+  removeFromInitiative,
+  setEditedCharacter,
+  setShowEditScreen
+}) => {
   const {
     name,
     ac,
@@ -16,6 +23,27 @@ const Character = ({ character, initiative, removeFromInitiative }) => {
   } = character;
 
   const [isChecked, setChecked] = useState(false);
+
+  const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
+  const [show, setShow] = useState(false);
+
+  const handleContextMenu = useCallback(
+    (event) => {
+      event.preventDefault();
+      setAnchorPoint({ x: event.pageX, y: event.pageY });
+      setShow(true);
+    },
+    [setAnchorPoint, setShow]
+  );
+
+  const handleClick = useCallback(() => (show ? setShow(false) : null), [show]);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  });
 
   const changeHandler = (event) => {
     let theChar = initiative.find((char) => char.name === event.target.id);
@@ -90,6 +118,7 @@ const Character = ({ character, initiative, removeFromInitiative }) => {
     <div
       className="character"
       style={{ backgroundColor: color }}
+      onContextMenu={handleContextMenu}
       onDragStart={(event) => dragStart(event)}
       draggable
     >
@@ -134,6 +163,15 @@ const Character = ({ character, initiative, removeFromInitiative }) => {
         className="delete-icon"
         onClick={(event) => removeFromInitiative(event, character)}
       />
+      {show && (
+        <OptionsMenu
+          anchorPoint={anchorPoint}
+          character={character}
+          removeFromInitiative={removeFromInitiative}
+          setEditedCharacter={setEditedCharacter}
+          setShowEditScreen={setShowEditScreen}
+        />
+      )}
     </div>
   );
 };
