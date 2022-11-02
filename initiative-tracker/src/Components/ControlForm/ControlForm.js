@@ -130,6 +130,7 @@ const ControlForm = ({
               <input
                 type="radio"
                 name="type"
+                className="type-radio-button"
                 id="PC"
                 value="PC"
                 onChange={(event) => radioButtonHandler(event)}
@@ -140,6 +141,7 @@ const ControlForm = ({
               <input
                 type="radio"
                 name="type"
+                className="type-radio-button"
                 id="NPC"
                 value="NPC"
                 onChange={(event) => radioButtonHandler(event)}
@@ -150,6 +152,7 @@ const ControlForm = ({
               <input
                 type="radio"
                 name="type"
+                className="type-radio-button"
                 id="Monster"
                 value="Monster"
                 onChange={(event) => radioButtonHandler(event)}
@@ -160,6 +163,7 @@ const ControlForm = ({
               <input
                 type="radio"
                 name="type"
+                className="type-radio-button"
                 id="Legendary"
                 value="Legendary"
                 onChange={(event) => radioButtonHandler(event)}
@@ -170,6 +174,7 @@ const ControlForm = ({
               <input
                 type="radio"
                 name="type"
+                className="type-radio-button"
                 id="Other"
                 value="Other"
                 onChange={(event) => radioButtonHandler(event)}

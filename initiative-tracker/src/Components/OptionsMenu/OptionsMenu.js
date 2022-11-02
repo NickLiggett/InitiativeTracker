@@ -1,3 +1,5 @@
+import "./OptionsMenu.css"
+
 const OptionsMenu = ({
   anchorPoint,
   character,
@@ -18,8 +20,8 @@ const OptionsMenu = ({
         left: anchorPoint.x,
       }}
     >
-      <li onClick={() => editHandler()}>Edit</li>
-      <li onClick={(event) => removeFromInitiative(event, character)}>
+      <li className="menu-option" onClick={() => editHandler()}>Edit</li>
+      <li className="menu-option" onClick={(event) => removeFromInitiative(event, character)}>
         Delete
       </li>
     </ul>

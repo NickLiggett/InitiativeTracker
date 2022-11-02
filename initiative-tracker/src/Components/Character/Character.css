@@ -53,6 +53,10 @@
   #reaction {
     width: 10%;
   }
+
+  .reaction-checkbox {
+    cursor: pointer;
+  }
   
   #legendary {
     display: flex;
@@ -66,6 +70,7 @@
 
   .legendary-checkbox {
     margin: 5px;
+    cursor: pointer;
   }
 
   .delete-icon {

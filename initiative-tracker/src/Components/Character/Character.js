@@ -138,6 +138,7 @@ const Character = ({
       <div id="reaction">
         <input
           type="checkbox"
+          className="reaction-checkbox"
           name="reaction"
           checked={reaction}
           id={name}

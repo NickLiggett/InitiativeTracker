@@ -54,20 +54,7 @@ main {
   background-color:rgba(250, 235, 215, 0.3);
 }
 
-.menu {
-  font-size: 14px;
-  background-color: #fff;
-  border-radius: 2px;
-  padding: 5px 0 5px 0;
-  width: 150px;
-  height: auto;
-  margin: 0;
-  position: absolute;
-  list-style: none;
-  box-shadow: 0 0 20px 0 #ccc;
-  opacity: 1;
-  transition: opacity 0.5s linear;
-}
+
 
 .edit-screen-wrapper {
   display: flex;
