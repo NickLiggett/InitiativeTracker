@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/InitiativeTracker/static/css/main.dcde6a0d.css",
-    "main.js": "/InitiativeTracker/static/js/main.79965ae0.js",
+    "main.css": "/InitiativeTracker/static/css/main.da005a0c.css",
+    "main.js": "/InitiativeTracker/static/js/main.4476628c.js",
     "static/media/dungeon.jpeg": "/InitiativeTracker/static/media/dungeon.1abaabd6699486066bf2.jpeg",
     "index.html": "/InitiativeTracker/index.html",
-    "main.dcde6a0d.css.map": "/InitiativeTracker/static/css/main.dcde6a0d.css.map",
-    "main.79965ae0.js.map": "/InitiativeTracker/static/js/main.79965ae0.js.map"
+    "main.da005a0c.css.map": "/InitiativeTracker/static/css/main.da005a0c.css.map",
+    "main.4476628c.js.map": "/InitiativeTracker/static/js/main.4476628c.js.map"
   },
   "entrypoints": [
-    "static/css/main.dcde6a0d.css",
-    "static/js/main.79965ae0.js"
+    "static/css/main.da005a0c.css",
+    "static/js/main.4476628c.js"
   ]
 }
