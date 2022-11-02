@@ -5,48 +5,61 @@ import Headings from "../Headings/Headings";
 import InitiativeField from "../InitiativeField/InitiativeField";
 import ControlForm from "../ControlForm/ControlForm";
 import EditCharacterMenu from "../EditCharacterMenu/EditCharacterMenu";
+import dungeonPic from "../../Assets/dungeon.jpeg";
+import castleBridge from "../../Assets/castle-bridge.jpeg";
+import floatingRocks from "../../Assets/floating-rocks.jpeg";
+import nightCity from "../../Assets/night-city.webp";
+import d20Icon from "../../Assets/d20-icon.png"
+
+const possibleBackgrounds = [
+  dungeonPic,
+  castleBridge,
+  floatingRocks,
+  nightCity,
+];
+
+const characters = [ {
+  name: "Nick",
+  initiativeRoll: 13,
+  hp: 75,
+  currentHP: 75,
+  type: "Monster",
+  legendaryActions: [],
+  legendaryResistances: [],
+  reaction: false,
+  ac: 18,
+  id: 123,
+},
+{
+  name: "Alex",
+  initiativeRoll: 7,
+  hp: 82,
+  currentHP: 82,
+  legendaryActions: [],
+  legendaryResistances: [],
+  type: "PC",
+  reaction: false,
+  ac: 16,
+  id: 456,
+},
+{
+  name: "Lauren",
+  initiativeRoll: 16,
+  hp: 78,
+  currentHP: 78,
+  type: "Legendary",
+  legendaryActions: [false, false, false],
+  legendaryResistances: [false, false],
+  reaction: false,
+  ac: 17,
+  id: 789,
+},]
 
 const App = () => {
-  const [initiative, setInitiative] = useState([
-    {
-      name: "Nick",
-      initiativeRoll: 13,
-      hp: 75,
-      currentHP: 75,
-      type: "Monster",
-      legendaryActions: [],
-      legendaryResistances: [],
-      reaction: false,
-      ac: 18,
-      id: 123,
-    },
-    {
-      name: "Alex",
-      initiativeRoll: 7,
-      hp: 82,
-      currentHP: 82,
-      legendaryActions: [],
-      legendaryResistances: [],
-      type: "PC",
-      reaction: false,
-      ac: 16,
-      id: 456,
-    },
-    {
-      name: "Lauren",
-      initiativeRoll: 16,
-      hp: 78,
-      currentHP: 78,
-      type: "Legendary",
-      legendaryActions: [false, false, false],
-      legendaryResistances: [false, false],
-      reaction: false,
-      ac: 17,
-      id: 789,
-    },
-  ]);
+  const [initiative, setInitiative] = useState(characters);
   const [showEditScreen, setShowEditScreen] = useState(false);
   const [editedCharacter, setEditedCharacter] = useState({});
+  const [background, setBackground] = useState(possibleBackgrounds[0]);
 
   if (initiative.length) {
     if (initiative[0].legendaryActions.length) {
@@ -58,6 +71,12 @@ const App = () => {
       initiative[0].reaction = false;
     }
   }
+
+  const cycleBackgrounds = () => {
+    possibleBackgrounds.push(possibleBackgrounds[0])
+    possibleBackgrounds.shift()
+    setBackground(possibleBackgrounds[0])
+  };
 
   const nextTurn = () => {
     let newOrder = initiative;
@@ -123,41 +142,51 @@ const App = () => {
     theChar.hp = document.getElementById("edit-hp").value;
     theChar.type = document.getElementById("edit-type").value;
     if (document.getElementById("edit-legendary-actions")) {
-      theChar.legendaryActions.length = document.getElementById("edit-legendary-actions").value
-      theChar.legendaryResistances.length = document.getElementById("edit-legendary-resistances").value
+      theChar.legendaryActions.length = document.getElementById(
+        "edit-legendary-actions"
+      ).value;
+      theChar.legendaryResistances.length = document.getElementById(
+        "edit-legendary-resistances"
+      ).value;
     }
     setShowEditScreen(false);
   };
 
   useEffect(() => {
+    document.querySelector(
+      "main"
+    ).style.backgroundImage = `url("${background}")`;
     document.addEventListener("keydown", handleKeyPress);
     return () => document.removeEventListener("keydown", handleKeyPress);
   });
 
   return (
     <main>
-      <Header />
-      <Headings />
-      <InitiativeField
-        initiative={initiative}
-        removeFromInitiative={removeFromInitiative}
-        setEditedCharacter={setEditedCharacter}
-        setShowEditScreen={setShowEditScreen}
-      />
-      <ControlForm
-        addToInitiative={addToInitiative}
-        clearInitiative={clearInitiative}
-        sortInitiative={sortInitiative}
-        nextTurn={nextTurn}
-        backTurn={backTurn}
-      />
-      {showEditScreen && (
-        <EditCharacterMenu
-          editedCharacter={editedCharacter}
-          editCharacter={editCharacter}
+      <img className="toggle-background-button" src={d20Icon} onClick={() => cycleBackgrounds()}/>
+      <div className="main">
+        <Header />
+        <Headings />
+        <InitiativeField
+          initiative={initiative}
+          removeFromInitiative={removeFromInitiative}
+          setEditedCharacter={setEditedCharacter}
           setShowEditScreen={setShowEditScreen}
         />
-      )}
+        <ControlForm
+          addToInitiative={addToInitiative}
+          clearInitiative={clearInitiative}
+          sortInitiative={sortInitiative}
+          nextTurn={nextTurn}
+          backTurn={backTurn}
+        />
+        {showEditScreen && (
+          <EditCharacterMenu
+            editedCharacter={editedCharacter}
+            editCharacter={editCharacter}
+            setShowEditScreen={setShowEditScreen}
+          />
+        )}
+      </div>
     </main>
   );
 };

@@ -76,4 +76,5 @@
   .delete-icon {
     width: 20px;
     height: fit-content;
+    cursor: pointer;
   }
