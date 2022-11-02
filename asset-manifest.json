@@ -1,14 +1,18 @@
 {
   "files": {
-    "main.css": "/InitiativeTracker/static/css/main.da005a0c.css",
-    "main.js": "/InitiativeTracker/static/js/main.4476628c.js",
+    "main.css": "/InitiativeTracker/static/css/main.14482d65.css",
+    "main.js": "/InitiativeTracker/static/js/main.2d5f29d0.js",
     "static/media/dungeon.jpeg": "/InitiativeTracker/static/media/dungeon.1abaabd6699486066bf2.jpeg",
+    "static/media/night-city.webp": "/InitiativeTracker/static/media/night-city.f6b3b5d5108082bd0872.webp",
+    "static/media/floating-rocks.jpeg": "/InitiativeTracker/static/media/floating-rocks.83b63dfbc3c775c493ee.jpeg",
+    "static/media/castle-bridge.jpeg": "/InitiativeTracker/static/media/castle-bridge.d5c5cb0c22708fcb7bc6.jpeg",
+    "static/media/d20-icon.png": "/InitiativeTracker/static/media/d20-icon.84ba7802049d29b97fc9.png",
     "index.html": "/InitiativeTracker/index.html",
-    "main.da005a0c.css.map": "/InitiativeTracker/static/css/main.da005a0c.css.map",
-    "main.4476628c.js.map": "/InitiativeTracker/static/js/main.4476628c.js.map"
+    "main.14482d65.css.map": "/InitiativeTracker/static/css/main.14482d65.css.map",
+    "main.2d5f29d0.js.map": "/InitiativeTracker/static/js/main.2d5f29d0.js.map"
   },
   "entrypoints": [
-    "static/css/main.da005a0c.css",
-    "static/js/main.4476628c.js"
+    "static/css/main.14482d65.css",
+    "static/js/main.2d5f29d0.js"
   ]
 }
