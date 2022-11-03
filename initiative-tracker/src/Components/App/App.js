@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import Headings from "../Headings/Headings";
@@ -9,51 +9,61 @@ import dungeonPic from "../../Assets/dungeon.jpeg";
 import castleBridge from "../../Assets/castle-bridge.jpeg";
 import floatingRocks from "../../Assets/floating-rocks.jpeg";
 import nightCity from "../../Assets/night-city.webp";
-import d20Icon from "../../Assets/d20-icon.png"
+import d20Icon from "../../Assets/d20-icon.png";
+import enchantedForrest from "../../Assets/enchantedForrest.jpg"
+import darkForrest from "../../Assets/darkForrest.jpeg"
+import shoreCity from "../../Assets/shoreCity.jpg"
+import battleAtSea from "../../Assets/battleAtSea.jpeg"
 
 const possibleBackgrounds = [
   dungeonPic,
   castleBridge,
   floatingRocks,
   nightCity,
+  enchantedForrest,
+  darkForrest,
+  shoreCity,
+  battleAtSea
 ];
 
-const characters = [ {
-  name: "Nick",
-  initiativeRoll: 13,
-  hp: 75,
-  currentHP: 75,
-  type: "Monster",
-  legendaryActions: [],
-  legendaryResistances: [],
-  reaction: false,
-  ac: 18,
-  id: 123,
-},
-{
-  name: "Alex",
-  initiativeRoll: 7,
-  hp: 82,
-  currentHP: 82,
-  legendaryActions: [],
-  legendaryResistances: [],
-  type: "PC",
-  reaction: false,
-  ac: 16,
-  id: 456,
-},
-{
-  name: "Lauren",
-  initiativeRoll: 16,
-  hp: 78,
-  currentHP: 78,
-  type: "Legendary",
-  legendaryActions: [false, false, false],
-  legendaryResistances: [false, false],
-  reaction: false,
-  ac: 17,
-  id: 789,
-},]
+const characters = [
+  {
+    name: "Nick",
+    initiativeRoll: 13,
+    hp: 75,
+    currentHP: 75,
+    type: "Monster",
+    legendaryActions: [],
+    legendaryResistances: [],
+    reaction: false,
+    ac: 18,
+    id: 123,
+  },
+  {
+    name: "Alex",
+    initiativeRoll: 7,
+    hp: 82,
+    currentHP: 82,
+    legendaryActions: [],
+    legendaryResistances: [],
+    type: "PC",
+    reaction: false,
+    ac: 16,
+    id: 456,
+  },
+  {
+    name: "Lauren",
+    initiativeRoll: 16,
+    hp: 78,
+    currentHP: 78,
+    type: "Legendary",
+    legendaryActions: [false, false, false],
+    legendaryResistances: [false, false],
+    reaction: false,
+    ac: 17,
+    id: 789,
+  },
+];
 
 const App = () => {
   const [initiative, setInitiative] = useState(characters);
@@ -73,12 +83,13 @@ const App = () => {
   }
 
   const cycleBackgrounds = () => {
-    possibleBackgrounds.push(possibleBackgrounds[0])
-    possibleBackgrounds.shift()
-    setBackground(possibleBackgrounds[0])
+    possibleBackgrounds.push(possibleBackgrounds[0]);
+    possibleBackgrounds.shift();
+    setBackground(possibleBackgrounds[0]);
   };
 
   const nextTurn = () => {
+    console.log(initiative)
     let newOrder = initiative;
     newOrder.push(newOrder[0]);
     newOrder.shift();
@@ -162,7 +173,11 @@ const App = () => {
 
   return (
     <main>
-      <img className="toggle-background-button" src={d20Icon} onClick={() => cycleBackgrounds()}/>
+      <img
+        className="toggle-background-button"
+        src={d20Icon}
+        onClick={() => cycleBackgrounds()}
+      />
       <div className="main">
         <Header />
         <Headings />
