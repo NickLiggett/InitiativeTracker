@@ -1,18 +1,22 @@
 {
   "files": {
     "main.css": "/InitiativeTracker/static/css/main.14482d65.css",
-    "main.js": "/InitiativeTracker/static/js/main.2d5f29d0.js",
+    "main.js": "/InitiativeTracker/static/js/main.e785c0f1.js",
+    "static/media/enchantedForrest.jpg": "/InitiativeTracker/static/media/enchantedForrest.f6e80c1dcf5bd62598a9.jpg",
     "static/media/dungeon.jpeg": "/InitiativeTracker/static/media/dungeon.1abaabd6699486066bf2.jpeg",
     "static/media/night-city.webp": "/InitiativeTracker/static/media/night-city.f6b3b5d5108082bd0872.webp",
+    "static/media/shoreCity.jpg": "/InitiativeTracker/static/media/shoreCity.4559820c4a91e5280bb1.jpg",
+    "static/media/darkForrest.jpeg": "/InitiativeTracker/static/media/darkForrest.48bd48411631dac68712.jpeg",
+    "static/media/battleAtSea.jpeg": "/InitiativeTracker/static/media/battleAtSea.8dd6b11bbeeb6bc81500.jpeg",
     "static/media/floating-rocks.jpeg": "/InitiativeTracker/static/media/floating-rocks.83b63dfbc3c775c493ee.jpeg",
     "static/media/castle-bridge.jpeg": "/InitiativeTracker/static/media/castle-bridge.d5c5cb0c22708fcb7bc6.jpeg",
     "static/media/d20-icon.png": "/InitiativeTracker/static/media/d20-icon.84ba7802049d29b97fc9.png",
     "index.html": "/InitiativeTracker/index.html",
     "main.14482d65.css.map": "/InitiativeTracker/static/css/main.14482d65.css.map",
-    "main.2d5f29d0.js.map": "/InitiativeTracker/static/js/main.2d5f29d0.js.map"
+    "main.e785c0f1.js.map": "/InitiativeTracker/static/js/main.e785c0f1.js.map"
   },
   "entrypoints": [
     "static/css/main.14482d65.css",
-    "static/js/main.2d5f29d0.js"
+    "static/js/main.e785c0f1.js"
   ]
 }
