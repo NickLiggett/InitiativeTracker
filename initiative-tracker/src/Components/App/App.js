@@ -9,7 +9,7 @@ import dungeonPic from "../../Assets/dungeon.jpeg";
 import castleBridge from "../../Assets/castle-bridge.jpeg";
 import floatingRocks from "../../Assets/floating-rocks.jpeg";
 import nightCity from "../../Assets/night-city.webp";
-import d20Icon from "../../Assets/d20-icon.png";
+import whiteIcon from "../../Assets/white-dice.png";
 import enchantedForrest from "../../Assets/enchantedForrest.jpg"
 import darkForrest from "../../Assets/darkForrest.jpeg"
 import shoreCity from "../../Assets/shoreCity.jpg"
@@ -25,8 +25,6 @@ const possibleBackgrounds = [
   shoreCity,
   battleAtSea
 ];
-
-const characters = [];
 
 const App = () => {
   const [initiative, setInitiative] = useState([]);
@@ -138,7 +136,7 @@ const App = () => {
     <main>
       <img
         className="toggle-background-button"
-        src={d20Icon}
+        src={whiteIcon}
         onClick={() => cycleBackgrounds()}
       />
       <div className="main">
