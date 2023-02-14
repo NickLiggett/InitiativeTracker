@@ -16,7 +16,7 @@ const InitiativeField = ({ initiative, removeFromInitiative, setEditedCharacter,
     );
   });
 
-  return <div key={Date.now()} className="initiative-wrapper">{characters}</div>;
+  return <div key={Date.now()} className={`${characters.length ? "initiative-wrapper" : "starting-message"}`}>{characters.length ? characters : <h1 className="starting-message-text">Enter a character</h1>}</div>;
 };
 
 export default InitiativeField;

@@ -26,47 +26,10 @@ const possibleBackgrounds = [
   battleAtSea
 ];
 
-const characters = [
-  {
-    name: "Nick",
-    initiativeRoll: 13,
-    hp: 75,
-    currentHP: 75,
-    type: "Monster",
-    legendaryActions: [],
-    legendaryResistances: [],
-    reaction: false,
-    ac: 18,
-    id: 123,
-  },
-  {
-    name: "Alex",
-    initiativeRoll: 7,
-    hp: 82,
-    currentHP: 82,
-    legendaryActions: [],
-    legendaryResistances: [],
-    type: "PC",
-    reaction: false,
-    ac: 16,
-    id: 456,
-  },
-  {
-    name: "Lauren",
-    initiativeRoll: 16,
-    hp: 78,
-    currentHP: 78,
-    type: "Legendary",
-    legendaryActions: [false, false, false],
-    legendaryResistances: [false, false],
-    reaction: false,
-    ac: 17,
-    id: 789,
-  },
-];
+const characters = [];
 
 const App = () => {
-  const [initiative, setInitiative] = useState(characters);
+  const [initiative, setInitiative] = useState([]);
   const [showEditScreen, setShowEditScreen] = useState(false);
   const [editedCharacter, setEditedCharacter] = useState({});
   const [background, setBackground] = useState(possibleBackgrounds[0]);
