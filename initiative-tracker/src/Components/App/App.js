@@ -30,7 +30,7 @@ const App = () => {
   const [initiative, setInitiative] = useState([]);
   const [showEditScreen, setShowEditScreen] = useState(false);
   const [editedCharacter, setEditedCharacter] = useState({});
-  const [background, setBackground] = useState(possibleBackgrounds[0]);
+  const [background, setBackground] = useState(possibleBackgrounds[Math.floor(Math.random() * possibleBackgrounds.length)]);
 
   if (initiative.length) {
     if (initiative[0].legendaryActions.length) {
