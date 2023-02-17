@@ -1,140 +1,168 @@
-
 .control-form {
-    display: flex;
-    justify-content: space-between;
-    border-style: solid;
-    height: 25%;
-    min-height: 150px;
-    width: 100%;
-    background-color:rgba(250, 235, 215, 0.3);
-    font-family: monospace;
+  display: flex;
+  justify-content: space-between;
+  border-style: solid;
+  height: 25%;
+  min-height: 180px;
+  width: 100%;
+  background-color: rgba(250, 235, 215, 0.3);
+  font-family: monospace;
+}
+
+.input-wrapper {
+  display: flex;
+}
+
+.inputs-1 {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  text-shadow: 0 0 5px black;
+  margin-top: 1%;
+}
+
+.form-input {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 25px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+#name-input,
+#initiative-input,
+#ac-input,
+#hp-input {
+  background-color: rgba(41, 40, 40, 0.727);
+  color: white;
+  border-color: darkred;
+  border-style: solid;
+}
+
+#ac-input,
+#initiative-input,
+#hp-input,
+#legendaryActions-input,
+#legendaryResistances-input {
+  width: 20px;
+}
+
+#type-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 25%;
+  padding-bottom: 1%;
+}
+
+.type-radio-button {
+  cursor: pointer;
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 30%;
+}
+
+#add-button,
+#clear-button,
+#sort-button,
+#next-button,
+#back-button,
+#top-button {
+  background-color: rgba(41, 40, 40, 0.727);
+  color: white;
+  font-family: monospace;
+  border-color: darkred;
+  border-style: solid;
+  cursor: pointer;
+  height: 25%;
+  width: 110%;
+  font-size: 16px;
+}
+
+#add-button:hover,
+#clear-button:hover,
+#sort-button:hover,
+#next-button:hover,
+#back-button:hover,
+#top-button:hover {
+  background-color: #5a5a5a;
+}
+
+.navigation-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60%;
+  width: 30%;
+  margin-right: 10%;
+}
+
+.add-clear-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60%;
+  width: 30%;
+}
+
+@media only screen and (min-width: 1681px) {
+  .form-input {
+    font-size: 23px;
   }
 
-  .inputs {
-    display: flex;
+  .control-form {
+    min-height: 200px;
   }
+}
 
-  .input-wrapper {
-    display: flex;
+@media only screen and (max-width: 1680px) and (min-width: 1400px) {
+  .form-input {
+    font-size: 21px;
   }
+}
 
-  .inputs-1 {
-    display: flex;
+@media only screen and (max-width: 1225px) {
+  .control-form {
+    height: 350px;
     flex-direction: column;
-    justify-content: space-around;
-    width: 60%;
-    color: white;
-    text-shadow: 0 0 5px black;
+    justify-content: flex-start;
   }
 
   .form-input {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-    margin-top: 1%;
     font-size: 20px;
-    font-weight: 600;
-  }
-
-  #name-input, 
-  #ac-input, 
-  #initiative-input,
-  #hp-input {
-    background-color:rgba(41, 40, 40, 0.727);
-    color: white;
-    border-color: darkred;
-    border-style: solid;
-  }
-
-  #ac-input {
-    width: 20px;
-  }
-
-  #initiative-input {
-    width: 20px;
-  }
-
-  #hp-input {
-    width: 20px;
-  }
-
-  #legendaryActions-input {
-    width: 20px;
-  }
-
-  #legendaryResistances-input {
-    width: 20px;
-  }
-
-  #type-error-dot {
-    color: red;
-
-  }
-
-  #type-input-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 25%;
-    padding-bottom: 1%;
-  }
-
-  .type-radio-button {
-    cursor: pointer;
   }
 
   .button-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 40%;
-    margin-top: 1%;
-  }
+    width: 100%;
+    margin-top: -2%;
+}
 
-  #add-button, 
-  #clear-button, 
-  #sort-button, 
-  #next-button, 
-  #back-button, 
-  #top-button {
-    background-color:rgba(41, 40, 40, 0.727);
-    color: white;
-    font-size: 100%;
-    font-family: monospace;
-    border-color: darkred;
-    border-style: solid;
-    width: 110%;
-    height: 50%;
-    margin: 5px;
-    cursor: pointer;
-  }
+#add-button,
+#clear-button,
+#sort-button,
+#next-button,
+#back-button,
+#top-button {
+  height: 30px;
+  margin: 5px;
+}
 
-  #add-button:hover, 
-  #clear-button:hover, 
-  #sort-button:hover, 
-  #next-button:hover, 
-  #back-button:hover, 
-  #top-button:hover {
-    background-color:#5a5a5a;
-  }
+.navigation-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 60%;
+}
 
-  #add-button, 
-  #clear-button, 
-  #sort-button {
-    margin-left: 50%;
-  }
-
-  .navigation-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 60%;
-    margin-right: 10%;
-  }
-
-  .add-clear-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 60%;
-  }
+.add-clear-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+}

@@ -69,7 +69,7 @@ const ControlForm = ({
   return (
     <form className="control-form">
       <div className="inputs-1">
-        <div className="inputs">
+        <div className="input-wrapper">
           <div className="form-input" id="name-input-wrapper">
             Name:{" "}
             <input
@@ -80,49 +80,48 @@ const ControlForm = ({
               type="text"
               onChange={(event) => setName(event.target.value)}
             />
-            <div className="input-wrapper">
-              <div className="form-input" id="initiative-input-wrapper">
-                Initiative:{" "}
-                <input
-                  value={initiativeRoll}
-                  name="initiativeRoll"
-                  id="initiative-input"
-                  type="text"
-                  onChange={(event) => setInitiativeRoll(event.target.value)}
-                />
-              </div>
-              <div className="form-input" id="ac-input-wrapper">
-                AC:{" "}
-                <input
-                  value={ac}
-                  name="ac"
-                  id="ac-input"
-                  type="text"
-                  onChange={(event) => setAc(event.target.value)}
-                />
-              </div>
-              <div className="form-input" id="hp-input-wrapper">
-                HP:{" "}
-                <input
-                  value={hp}
-                  name="hp"
-                  id="hp-input"
-                  type="text"
-                  onChange={(event) => setHp(event.target.value)}
-                />
-              </div>
-              {type === "Monster" && (
-                <div className="form-input" id="mob-input-wrapper">
-                  Mob:{" "}
-                  <input
-                    id="mob-input"
-                    type="checkbox"
-                    onChange={() => setMob(!mob)}
-                  />
-                </div>
-              )}
             </div>
-          </div>
+            <div className="form-input" id="initiative-input-wrapper">
+              Initiative:{" "}
+              <input
+                value={initiativeRoll}
+                name="initiativeRoll"
+                id="initiative-input"
+                type="text"
+                onChange={(event) => setInitiativeRoll(event.target.value)}
+              />
+            </div>
+            <div className="form-input" id="ac-input-wrapper">
+              AC:{" "}
+              <input
+                value={ac}
+                name="ac"
+                id="ac-input"
+                type="text"
+                onChange={(event) => setAc(event.target.value)}
+              />
+            </div>
+            <div className="form-input" id="hp-input-wrapper">
+              HP:{" "}
+              <input
+                value={hp}
+                name="hp"
+                id="hp-input"
+                type="text"
+                onChange={(event) => setHp(event.target.value)}
+              />
+            </div>
+            {type === "Monster" && (
+              <div className="form-input" id="mob-input-wrapper">
+                Mob:{" "}
+                <input
+                  id="mob-input"
+                  type="checkbox"
+                  onChange={() => setMob(!mob)}
+                />
+              </div>
+            )}
+          
         </div>
         <div className="input-wrapper">
           <div className="form-input" id="type-input-wrapper">
@@ -183,7 +182,6 @@ const ControlForm = ({
               Other
             </div>
           </div>
-          {error && <p id="type-error-dot">* You must select a Type</p>}
           {type === "Legendary" && (
             <div className="legendary-input-wrapper">
               <div className="form-input" id="legendaryActions-input-wrapper">
@@ -214,7 +212,7 @@ const ControlForm = ({
       <div className="button-wrapper">
         <div className="add-clear-buttons">
           <button id="add-button" onClick={(event) => addHandler(event)}>
-            Add to Initiative
+            Add
           </button>
           <button
             id="clear-button"
@@ -222,7 +220,7 @@ const ControlForm = ({
               clearInitiative(event);
             }}
           >
-            Clear Initiative
+            Clear
           </button>
           <button id="sort-button" onClick={(event) => sortInitiative(event)}>
             Sort
