@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/InitiativeTracker/static/css/main.6a5b1971.css",
-    "main.js": "/InitiativeTracker/static/js/main.91d6f267.js",
+    "main.css": "/InitiativeTracker/static/css/main.9a843714.css",
+    "main.js": "/InitiativeTracker/static/js/main.7e506c8b.js",
     "static/media/enchantedForrest.jpg": "/InitiativeTracker/static/media/enchantedForrest.f6e80c1dcf5bd62598a9.jpg",
     "static/media/dungeon.jpeg": "/InitiativeTracker/static/media/dungeon.1abaabd6699486066bf2.jpeg",
     "static/media/night-city.webp": "/InitiativeTracker/static/media/night-city.f6b3b5d5108082bd0872.webp",
@@ -12,11 +12,11 @@
     "static/media/white-dice.png": "/InitiativeTracker/static/media/white-dice.d2d2b5175fdf35c5f6f6.png",
     "static/media/castle-bridge.jpeg": "/InitiativeTracker/static/media/castle-bridge.d5c5cb0c22708fcb7bc6.jpeg",
     "index.html": "/InitiativeTracker/index.html",
-    "main.6a5b1971.css.map": "/InitiativeTracker/static/css/main.6a5b1971.css.map",
-    "main.91d6f267.js.map": "/InitiativeTracker/static/js/main.91d6f267.js.map"
+    "main.9a843714.css.map": "/InitiativeTracker/static/css/main.9a843714.css.map",
+    "main.7e506c8b.js.map": "/InitiativeTracker/static/js/main.7e506c8b.js.map"
   },
   "entrypoints": [
-    "static/css/main.6a5b1971.css",
-    "static/js/main.91d6f267.js"
+    "static/css/main.9a843714.css",
+    "static/js/main.7e506c8b.js"
   ]
 }
