@@ -134,7 +134,6 @@ const ControlForm = ({
                 id="PC"
                 value="PC"
                 onChange={(event) => radioButtonHandler(event)}
-                checked
               />
               PC
             </div>
