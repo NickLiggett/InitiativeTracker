@@ -18,7 +18,7 @@ const ControlForm = ({
   const [legendaryResistances, setLr] = useState([]);
   const [numOfLegRes, setNumOfLegRes] = useState("");
   const [mob, setMob] = useState(false);
-  const [type, setType] = useState("");
+  const [type, setType] = useState("PC");
   const [error, setError] = useState(false);
 
   const addHandler = (event) => {
@@ -41,7 +41,7 @@ const ControlForm = ({
         legendaryResistances: legendaryResistances,
         mob: mob,
         type: type,
-        id: Date.now()
+        id: Date.now(),
       });
       clearInputs();
     } else {
@@ -134,6 +134,7 @@ const ControlForm = ({
                 id="PC"
                 value="PC"
                 onChange={(event) => radioButtonHandler(event)}
+                checked={type === "PC" ? "checked" : false}
               />
               PC
             </div>
